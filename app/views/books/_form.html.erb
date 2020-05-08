@@ -1,0 +1,30 @@
+<%= form_with(model: book, local: true) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :book_title %>
+    <%= form.text_field :book_title %>
+  </div>
+  <div class="checkbox">
+      <% @authors.each do |author| %>
+      <div>
+       <%= check_box_tag "book[author_#{author.id}]", author.id, @book.authors.include?(author)%>
+       <%= "#{author.first_name} #{author.last_name}" %> 
+
+      </div>
+      <%end%>
+   </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
