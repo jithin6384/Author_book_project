@@ -1,0 +1,5 @@
+class AddColumnToAuthors < ActiveRecord::Migration[5.2]
+  def change
+  	add_column :authors, :dob, :string
+  end
+end
