@@ -7,3 +7,13 @@
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
+
+<h2> Authors of the book are </h2>
+
+
+<p>
+  <strong>Authors of the book are </strong>
+  <% @book.authors.each do |author| %>
+    <ul> <%= author.first_name %> </ul>
+   <% end %>
+</p>

@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :book_json, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -10,6 +10,14 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+   
+  end
+
+  def book_json
+    @author_json = @book.authors.map do |author|
+    author.as_json(include: :books)
+    end
+   render json: { author: @author_json }
   end
 
   # GET /books/new
